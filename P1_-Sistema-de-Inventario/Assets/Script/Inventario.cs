@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Inventario : MonoBehaviour
 {
-    //El espacio esta vacio o tiene un objeto
+    //El espacio esta vacio tiene un objeto
     private bool InventActivo;
     
     //Referencia al inventario
@@ -31,6 +31,7 @@ public class Inventario : MonoBehaviour
 
         //Creamos un game object por cada espacio
         Espacios = new GameObject[TodEspa];
+
 
         //Busca los espacios
         for (int i = 0; i < TodEspa; i++)
