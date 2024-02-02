@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventario : MonoBehaviour
@@ -10,34 +11,40 @@ public class Inventario : MonoBehaviour
     private bool InventActivo;
     
     //Referencia al inventario
-    public GameObject Hud;
+    public GameObject hud;
 
     //Cuantos espacios tenemos
-    private int TodEspa;
+    private int todEspa;
 
     //Cuantos espacios tenemos disponibles
-    private int EspaDispo;
+    private int espaDispo;
 
     //Aqui guardamos los espacios
-    private GameObject[] Espacios;
+    private GameObject[] espacios;
 
-    //Para asignar el espacio
-    public GameObject Espacio;
+    //Para asignar el espacio 
+    public GameObject espacio;
 
     void Start()
     {
         //Cuantos espacios tienen a partir de los hijos del inventario
-        TodEspa = Espacio.transform.childCount;
+        todEspa = espacio.transform.childCount;
 
         //Creamos un game object por cada espacio
-        Espacios = new GameObject[TodEspa];
+        espacios = new GameObject[todEspa];
 
 
         //Busca los espacios
-        for (int i = 0; i < TodEspa; i++)
+        for (int i = 0; i < todEspa; i++)
         {
             //Asignamos un game object por cada espacio
-            Espacios[i] = Espacio.transform.GetChild(i).gameObject;
+            espacios[i] = espacio.transform.GetChild(i).gameObject;
+            //preguntar si el espacio esta vacio
+            if (espacios[i].GetComponent<Espacios>().item==null)
+            {
+                //Le asignamos el valor vacio en caso de cambios
+                espacios[i].GetComponent<Espacios>().vacio = true;
+            }
         }
 
     }
@@ -52,22 +59,72 @@ public class Inventario : MonoBehaviour
             // Se activa o desactiva el inventario
             if (InventActivo)
             {
-                Hud.SetActive(true);
+                hud.SetActive(true);
             }
             else
             {
-                Hud.SetActive(false);
+                hud.SetActive(false);
             }
     }
 
+    //Deteccion de objeto
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //preguntamos si es un objeto qeu podemos agarrar
+        if (other.tag=="Item")
+        {
+            //almacenamos el objeto en un gameobject
+            GameObject itemAgarrar = other.gameObject;
+
+            //Instanciamos la clase item  para extraer los datos del item que tomamos
+            Item item = itemAgarrar.GetComponent<Item>();
+
+
+
+            //Se activa el metodo agarrar y le ponemos los parametros necesarios
+            Agarrar(itemAgarrar, item.getNombre(), item.getIcono(), item.getVida(), item.getDescripcion());
+        }
+    }
     void  Seleccionar()
     {
 
     }
 
-    void Agarrar()
+    //Se va a encargar de añadir el item al inventario con sus espesificaciones
+    public void Agarrar(GameObject itemObj,string _nombre, Sprite _icono, int _vida, string _descripcion)
     {
-        
+        //Recorremos los espacios
+        for (int i = 0;i < todEspa;i++) 
+        {
+            //pregunta si esta vacio
+            if (espacios[i].GetComponent<Espacios>().vacio)
+            {
+                //Asigna que ya agarro el item
+                itemObj.GetComponent<Item>().agarro = true;
+                //agrega la informacion del item al espacio vacio
+                espacios[i].GetComponent<Espacios>().item = itemObj;
+                espacios[i].GetComponent<Espacios>().nombre = _nombre;
+                espacios[i].GetComponent<Espacios>().icono = _icono;
+                espacios[i].GetComponent<Espacios>().vida = _vida;
+                espacios[i].GetComponent<Espacios>().descripcion = _descripcion;
+
+                //se vuelve hijo del espacio y se guarde en el mismo
+                itemObj.transform.parent = espacios[i].transform;
+
+                //Desactivamos el item de la escena
+                itemObj.SetActive(false);
+
+                //Activa el cambio de imagen
+                espacios[i].GetComponent<Espacios>().ActualizacionEspacio();
+
+                //Decimos qeu ya no esta vacio
+                espacios[i].GetComponent<Espacios>().vacio = false;
+
+                //evitamos que llene todos los espacios y se detenga una vez encuentre uno vacio
+                return;
+            }
+
+        }
     }
 
     void Eliminar()
