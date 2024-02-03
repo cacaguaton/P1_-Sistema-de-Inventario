@@ -51,4 +51,42 @@ public class Item : MonoBehaviour
     //Saber si se agarro
     public bool agarro;
 
+    /*
+    [HideInInspector]
+    public bool equipado;
+
+    [HideInInspector]
+    public GameObject itemUso;
+
+    public bool usoPorPlayer;
+
+
+    private void Start()
+    {
+        itemUso = GameObject.FindWithTag("Uso");
+        if(usoPorPlayer)
+        {
+            int todosItems = itemUso.transform.childCount;
+            for(int i = 0; i < ; i++)
+            {
+
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (equipado) 
+        {
+            
+        }
+    }
+
+    public void ItemUso()
+    {
+        if (vida >= 1)
+        {
+            equipado = true;
+        }
+    }*/
 }

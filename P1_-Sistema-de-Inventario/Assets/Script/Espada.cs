@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Heredamos de item
-public class Papa : Item
+public class Espada : Item
 {
     [SerializeField]
     private Tipo tipo;
@@ -17,7 +16,7 @@ public class Papa : Item
         return tipo;
     }
 
-    public Rareza getRareza() 
+    public Rareza getRareza()
     {
         return rareza;
     }

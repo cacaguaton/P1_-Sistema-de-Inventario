@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Papa
+  - BloqueDiamante
+  - Espada
+  - Uso
   layers:
   - Default
   - TransparentFX

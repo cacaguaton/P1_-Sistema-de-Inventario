@@ -70,20 +70,41 @@ public class Inventario : MonoBehaviour
     //Deteccion de objeto
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //preguntamos si es un objeto qeu podemos agarrar
-        if (other.tag=="Item")
+
+        if (other.tag =="Papa")
         {
             //almacenamos el objeto en un gameobject
-            GameObject itemAgarrar = other.gameObject;
+            GameObject papaAgarrar = other.gameObject;
 
             //Instanciamos la clase item  para extraer los datos del item que tomamos
-            Item item = itemAgarrar.GetComponent<Item>();
-
-
+            Papa papa = papaAgarrar.GetComponent<Papa>();
 
             //Se activa el metodo agarrar y le ponemos los parametros necesarios
-            Agarrar(itemAgarrar, item.getNombre(), item.getIcono(), item.getVida(), item.getDescripcion());
+            Agarrar(papaAgarrar, papa.getNombre(), papa.getIcono(), papa.getVida(), papa.getDescripcion(), papa.getTipo(), papa.getRareza(), papa.getHabilidades());
         }
+        if (other.tag =="BloqueDiamante")
+        {
+            //almacenamos el objeto en un gameobject
+            GameObject diamanteAgarrar = other.gameObject;
+
+            //Instanciamos la clase item  para extraer los datos del item que tomamos
+            BloqueDiamante bloqueDiamante = diamanteAgarrar.GetComponent<BloqueDiamante>();
+
+            //Se activa el metodo agarrar y le ponemos los parametros necesarios
+            Agarrar(diamanteAgarrar, bloqueDiamante.getNombre(), bloqueDiamante.getIcono(), bloqueDiamante.getVida(), bloqueDiamante.getDescripcion(), bloqueDiamante.getTipo(), bloqueDiamante.getRareza(), bloqueDiamante.getHabilidades());
+        }
+        if (other.tag == "Espada")
+        {
+            //almacenamos el objeto en un gameobject
+            GameObject espadaAgarrar = other.gameObject;
+
+            //Instanciamos la clase item  para extraer los datos del item que tomamos
+            Espada espada = espadaAgarrar.GetComponent<Espada>();
+
+            //Se activa el metodo agarrar y le ponemos los parametros necesarios
+            Agarrar(espadaAgarrar, espada.getNombre(), espada.getIcono(), espada.getVida(), espada.getDescripcion(), espada.getTipo(), espada.getRareza(), espada.getHabilidades());
+        }
+
     }
     void  Seleccionar()
     {
@@ -91,7 +112,7 @@ public class Inventario : MonoBehaviour
     }
 
     //Se va a encargar de añadir el item al inventario con sus espesificaciones
-    public void Agarrar(GameObject itemObj,string _nombre, Sprite _icono, int _vida, string _descripcion)
+    public void Agarrar(GameObject itemObj,string _nombre, Sprite _icono, int _vida, string _descripcion, Tipo _tipo, Rareza _rareza, Habilidades _habilidades)
     {
         //Recorremos los espacios
         for (int i = 0;i < todEspa;i++) 
@@ -107,6 +128,9 @@ public class Inventario : MonoBehaviour
                 espacios[i].GetComponent<Espacios>().icono = _icono;
                 espacios[i].GetComponent<Espacios>().vida = _vida;
                 espacios[i].GetComponent<Espacios>().descripcion = _descripcion;
+                espacios[i].GetComponent<Espacios>().tipo = _tipo;
+                espacios[i].GetComponent<Espacios>().rareza = _rareza;
+                espacios[i].GetComponent<Espacios>().habilidades = _habilidades;
 
                 //se vuelve hijo del espacio y se guarde en el mismo
                 itemObj.transform.parent = espacios[i].transform;

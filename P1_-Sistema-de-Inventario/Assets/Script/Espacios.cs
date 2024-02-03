@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Espacios : MonoBehaviour
 {
-    //Utilizo [SerializeField] para cambiar los valores desde  unity
     //Se guarda el game object
     public GameObject item;
     //Se guarda el nombre
@@ -19,12 +18,9 @@ public class Espacios : MonoBehaviour
     public string descripcion;
 
     //Heredadas
-    //Se guarda el tipo
-    public string tipo;
-    //Se guarda la rareza
-    public string rareza;
-    //Se guarda la habilidad
-    public string habilidad;
+    public Tipo tipo;
+    public Rareza rareza;
+    public Habilidades habilidades;
 
     //Saber si se puede almacenar
     public bool vacio;
