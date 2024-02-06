@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Espacios : MonoBehaviour
+public class Espacios : MonoBehaviour, IPointerClickHandler
 {
     //Se guarda el game object
     public GameObject item;
@@ -27,6 +28,11 @@ public class Espacios : MonoBehaviour
 
     public Transform espacioIconoItem;
 
+
+    public bool equipado;
+
+
+
     private void Start()
     {
         espacioIconoItem = transform.GetChild(0);
@@ -36,5 +42,36 @@ public class Espacios : MonoBehaviour
     public void ActualizacionEspacio()
     {
         espacioIconoItem.GetComponent<Image>().sprite = icono;
+    }
+
+    public void UsoItem()
+    {
+        item.GetComponent<Item>().ItemUso();
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        UsoItem();
+    }
+
+    private void Update()
+    {
+        if (equipado)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                item = null;
+                nombre = null;
+                icono = null;
+                vida = 0;
+                descripcion = null;
+                tipo = 0;
+                rareza = 0;
+                habilidades = 0;
+                vacio = true;
+                equipado = false;
+                espacioIconoItem = null;
+            }
+        }
     }
 }

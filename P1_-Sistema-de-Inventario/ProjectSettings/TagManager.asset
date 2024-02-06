@@ -9,6 +9,9 @@ TagManager:
   - BloqueDiamante
   - Espada
   - Uso
+  - UsoPapa
+  - UsoBloque
+  - UsoEspada
   layers:
   - Default
   - TransparentFX

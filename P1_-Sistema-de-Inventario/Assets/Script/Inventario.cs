@@ -48,6 +48,7 @@ public class Inventario : MonoBehaviour
         }
 
     }
+    /*
     private void Update()
     {
         //pregunta si esta activo
@@ -65,7 +66,7 @@ public class Inventario : MonoBehaviour
             {
                 hud.SetActive(false);
             }
-    }
+    }*/
 
     //Deteccion de objeto
     private void OnTriggerEnter2D(Collider2D other)
@@ -80,7 +81,7 @@ public class Inventario : MonoBehaviour
             Papa papa = papaAgarrar.GetComponent<Papa>();
 
             //Se activa el metodo agarrar y le ponemos los parametros necesarios
-            Agarrar(papaAgarrar, papa.getNombre(), papa.getIcono(), papa.getVida(), papa.getDescripcion(), papa.getTipo(), papa.getRareza(), papa.getHabilidades());
+            Agarrar(papaAgarrar, papa.getNombre(), papa.getIcono(), papa.getVida(), papa.getDescripcion(), papa.getTipo(), papa.getRareza(), papa.getHabilidades(), papa.getEquipado());
         }
         if (other.tag =="BloqueDiamante")
         {
@@ -91,7 +92,7 @@ public class Inventario : MonoBehaviour
             BloqueDiamante bloqueDiamante = diamanteAgarrar.GetComponent<BloqueDiamante>();
 
             //Se activa el metodo agarrar y le ponemos los parametros necesarios
-            Agarrar(diamanteAgarrar, bloqueDiamante.getNombre(), bloqueDiamante.getIcono(), bloqueDiamante.getVida(), bloqueDiamante.getDescripcion(), bloqueDiamante.getTipo(), bloqueDiamante.getRareza(), bloqueDiamante.getHabilidades());
+            Agarrar(diamanteAgarrar, bloqueDiamante.getNombre(), bloqueDiamante.getIcono(), bloqueDiamante.getVida(), bloqueDiamante.getDescripcion(), bloqueDiamante.getTipo(), bloqueDiamante.getRareza(), bloqueDiamante.getHabilidades(), bloqueDiamante.getEquipado());
         }
         if (other.tag == "Espada")
         {
@@ -102,17 +103,13 @@ public class Inventario : MonoBehaviour
             Espada espada = espadaAgarrar.GetComponent<Espada>();
 
             //Se activa el metodo agarrar y le ponemos los parametros necesarios
-            Agarrar(espadaAgarrar, espada.getNombre(), espada.getIcono(), espada.getVida(), espada.getDescripcion(), espada.getTipo(), espada.getRareza(), espada.getHabilidades());
+            Agarrar(espadaAgarrar, espada.getNombre(), espada.getIcono(), espada.getVida(), espada.getDescripcion(), espada.getTipo(), espada.getRareza(), espada.getHabilidades(), espada.getEquipado());
         }
-
-    }
-    void  Seleccionar()
-    {
 
     }
 
     //Se va a encargar de añadir el item al inventario con sus espesificaciones
-    public void Agarrar(GameObject itemObj,string _nombre, Sprite _icono, int _vida, string _descripcion, Tipo _tipo, Rareza _rareza, Habilidades _habilidades)
+    public void Agarrar(GameObject itemObj,string _nombre, Sprite _icono, int _vida, string _descripcion, Tipo _tipo, Rareza _rareza, Habilidades _habilidades, bool _equipado)
     {
         //Recorremos los espacios
         for (int i = 0;i < todEspa;i++) 
@@ -131,6 +128,7 @@ public class Inventario : MonoBehaviour
                 espacios[i].GetComponent<Espacios>().tipo = _tipo;
                 espacios[i].GetComponent<Espacios>().rareza = _rareza;
                 espacios[i].GetComponent<Espacios>().habilidades = _habilidades;
+                espacios[i].GetComponent<Espacios>().equipado = _equipado;
 
                 //se vuelve hijo del espacio y se guarde en el mismo
                 itemObj.transform.parent = espacios[i].transform;
@@ -151,6 +149,10 @@ public class Inventario : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        
+    }
     void Eliminar()
     {
 
