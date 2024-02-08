@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UI; //De aui saque imagen
 
 public class Espacios : MonoBehaviour, IPointerClickHandler
 {
@@ -35,25 +35,30 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        //Le asigna el transform del primer hijo
         espacioIconoItem = transform.GetChild(0);
     }
 
     //Cambia el sprite del espacio en el UI
     public void ActualizacionEspacio()
     {
+        //Asigna al espacio de la ui el icono del item
         espacioIconoItem.GetComponent<Image>().sprite = icono;
     }
 
+    
     public void UsoItem()
     {
+        //llamamos el metodo ItemUso del script Item
         item.GetComponent<Item>().ItemUso();
     }
 
+    //Cuando detecte el click  se va activar
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         UsoItem();
     }
-
+    /*
     private void Update()
     {
         if (equipado)
@@ -73,5 +78,5 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
                 espacioIconoItem = null;
             }
         }
-    }
+    }*/
 }

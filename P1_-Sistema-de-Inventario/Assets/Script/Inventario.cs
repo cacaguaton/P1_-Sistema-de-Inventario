@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Inventario : MonoBehaviour
 {
-    //El espacio esta vacio tiene un objeto
-    private bool InventActivo;
+    /*
+    private bool InventActivo;*/
     
     //Referencia al inventario
     public GameObject hud;

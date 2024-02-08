@@ -148,6 +148,7 @@ public class Item : MonoBehaviour
         //preguntamos si esta equipado
         if (equipado)
         {
+            //si despues de que ya este equipado al apretar click derecho se desequipe
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 equipado = false;
