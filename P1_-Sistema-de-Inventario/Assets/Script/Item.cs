@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour
 {
@@ -38,13 +39,13 @@ public class Item : MonoBehaviour
     }
 
     //colocar
-    public void setItem(string _nombre, Sprite _icono, int _vida, string _descripcion)
+   /* public void setItem(string _nombre, Sprite _icono, int _vida, string _descripcion)
     {
         nombre = _nombre;
         icono = _icono;
         vida = _vida;
         descripcion = _descripcion;
-    }
+    }*/
 
     //Evitar que se vea
     [HideInInspector]
@@ -74,10 +75,14 @@ public class Item : MonoBehaviour
     //preguntsmod
     public bool usoPorPlayer;
 
-
+    //Espacios espacios;
     private void Start()
     {
-        //asignamos el game object al  game object que tenemos en unity
+       /* if (espacios != null)
+        {
+            espacios = transform.parent.GetComponent<Espacios>();
+        }*/
+            //asignamos el game object al game object que tenemos en unity
         itemUsoPapa = GameObject.FindWithTag("UsoPapa");
         itemUsoBloque = GameObject.FindWithTag("UsoBloque");
         itemUsoEspada = GameObject.FindWithTag("UsoEspada");
@@ -140,6 +145,9 @@ public class Item : MonoBehaviour
                 }
             }
         }
+
+        
+
     }
 
     //actualizamos la logica en tiempo real
@@ -152,11 +160,13 @@ public class Item : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0))
             {
                 equipado = false;
+               // Eliminar();
             }
             if(equipado == false)
             {
                 gameObject.SetActive(false);
             }
+            
             /*
             if (item.gameObject.GetComponent<Item>().nombre == "Papa")
         {
@@ -207,4 +217,29 @@ public class Item : MonoBehaviour
             item.GetComponent<Item>().equipado = true;
         }
     }
+    /*
+    public void EliminarEspacio()
+    {
+   
+    }
+
+    public void EnviarDatosAlPadre()
+    {
+        // Enviar datos al script del padre
+        if (espacios != null)
+        {
+            GameObject itemEliminado = null;
+            string nombreEliminado = null;
+            Sprite spriteEliminado = null;
+            int vidaEliminada = 0;
+            string descripcionEliminada = null;
+            Tipo tipoEliminado = 0;
+            Rareza rarezaEliminada = 0;
+            Habilidades habilidadesEliminadas = 0;
+            bool equipadoEliminado = false;
+            // Puedes llamar a métodos o establecer propiedades en el script del padre
+            espacios.RecibirDatosDesdeHijo(itemEliminado, nombreEliminado, spriteEliminado, vidaEliminada, descripcionEliminada, tipoEliminado, rarezaEliminada, habilidadesEliminadas, equipadoEliminado);
+        }
+    }*/
+
 }

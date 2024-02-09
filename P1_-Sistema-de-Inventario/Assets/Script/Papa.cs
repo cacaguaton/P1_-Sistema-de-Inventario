@@ -25,4 +25,27 @@ public class Papa : Item
     {
         return habilidades;
     }
+    /*
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q)) 
+        {
+            Eliminar();
+        }
+    }
+    public void Eliminar()
+    {
+        if(getEquipado())
+        {
+            tipo = 0;
+            rareza = 0;
+            habilidades = 0;
+            string nombreEliminar = null;
+            Sprite iconoEliminar = null;
+            int vidaEliminar = 0;
+            string descripcionEliminar = null;
+            setItem(nombreEliminar,iconoEliminar,vidaEliminar,descripcionEliminar);
+        }
+    }*/
+
 }

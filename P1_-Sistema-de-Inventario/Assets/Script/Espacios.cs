@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI; //De aui saque imagen
+using UnityEngine.UI; //De aqui saque imagen
 
 public class Espacios : MonoBehaviour, IPointerClickHandler
 {
@@ -26,8 +26,8 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
     //Saber si se puede almacenar
     public bool vacio;
 
+    //Cambia el sprite del espacio en el UI
     public Transform espacioIconoItem;
-
 
     public bool equipado;
 
@@ -37,6 +37,7 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
     {
         //Le asigna el transform del primer hijo
         espacioIconoItem = transform.GetChild(0);
+
     }
 
     //Cambia el sprite del espacio en el UI
@@ -53,7 +54,7 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
         item.GetComponent<Item>().ItemUso();
     }
 
-    //Cuando detecte el click  se va activar
+    //Cuando detecte el click  se va activar, tambien detecta posicion
     public void OnPointerClick(PointerEventData pointerEventData)
     {
         UsoItem();
@@ -61,10 +62,17 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
     /*
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DatosEnviados();
+        }
+        
         if (equipado)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.Q))
             {
+                Destroy(item);
+            
                 item = null;
                 nombre = null;
                 icono = null;
@@ -78,5 +86,25 @@ public class Espacios : MonoBehaviour, IPointerClickHandler
                 espacioIconoItem = null;
             }
         }
+}
+
+public void RecibirDatosDesdeHijo(GameObject _itemObj, string _nombre, Sprite _icono, int _vida, string _descripcion, Tipo _tipo, Rareza _rareza, Habilidades _habilidades, bool _equipado)
+    {
+        // Hacer algo con los datos recibidos del hijo
+        item = _itemObj;
+        nombre = _nombre;
+        icono = _icono;
+        vida = _vida;
+        descripcion = _descripcion;
+        tipo = _tipo;
+        rareza = _rareza;
+        habilidades = _habilidades;
+        equipado = _equipado;
+
+    }
+
+    public void DatosEnviados()
+    {
+        item.GetComponent<Item>().EnviarDatosAlPadre();
     }*/
 }
