@@ -16,9 +16,31 @@ public class Item : MonoBehaviour
     //Cuantos usos le quedan al item
     private int vida;
     [SerializeField]
-    //Se escribe ¿que es? y ¿que hace?
+    //Se escribe Â¿que es? y Â¿que hace?
    private string descripcion;
 
+       //Evitar que se vea
+    [HideInInspector]
+    //Saber si se agarro
+    public bool agarro;
+
+    //Saber si el objeto esta equipado
+    private bool equipado;
+
+ //Aqui guardamos el item en la mano
+    [HideInInspector]
+    public GameObject itemUsoPapa;
+    [HideInInspector]
+    public GameObject itemUsoBloque;
+    [HideInInspector]
+    public GameObject itemUsoEspada;
+
+    //item que se activa
+    [HideInInspector]
+    public GameObject item;
+
+    //preguntsmod
+    public bool usoPorPlayer;
 
     //obtener
     public string getNombre()
@@ -47,33 +69,12 @@ public class Item : MonoBehaviour
         descripcion = _descripcion;
     }*/
 
-    //Evitar que se vea
-    [HideInInspector]
-    //Saber si se agarro
-    public bool agarro;
-
-    //Saber si el objeto esta equipado
-    private bool equipado;
-
     public bool getEquipado()
     {
         return equipado;
     }
 
-    //Aqui guardamos el item en la mano
-    [HideInInspector]
-    public GameObject itemUsoPapa;
-    [HideInInspector]
-    public GameObject itemUsoBloque;
-    [HideInInspector]
-    public GameObject itemUsoEspada;
-
-    //item que se activa
-    [HideInInspector]
-    public GameObject item;
-
-    //preguntsmod
-    public bool usoPorPlayer;
+   
 
     //Espacios espacios;
     private void Start()
@@ -237,7 +238,7 @@ public class Item : MonoBehaviour
             Rareza rarezaEliminada = 0;
             Habilidades habilidadesEliminadas = 0;
             bool equipadoEliminado = false;
-            // Puedes llamar a métodos o establecer propiedades en el script del padre
+            // Puedes llamar a mÃ©todos o establecer propiedades en el script del padre
             espacios.RecibirDatosDesdeHijo(itemEliminado, nombreEliminado, spriteEliminado, vidaEliminada, descripcionEliminada, tipoEliminado, rarezaEliminada, habilidadesEliminadas, equipadoEliminado);
         }
     }*/
